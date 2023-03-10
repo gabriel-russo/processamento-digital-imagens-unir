@@ -93,9 +93,11 @@ fprintf("O novo valor de intensidade do pixel 3 é %i\n", s(3))
 % ############# EXPANSÃO DE HISTOGRAMA - COM IMAGEM ########################
 
 img = imread("sol2.jpg");
-imhist(img);
+
+figure, imhist(img);
 
 img_expansao = expansao_de_histograma(img);
 
 figure, imshow([img img_expansao]);
-imhist(img_expansao);
+
+figure, imhist(img_expansao);
