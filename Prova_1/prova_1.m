@@ -1,39 +1,33 @@
-pkg('load', 'image'); # Carregando a lib
+pkg('load', 'image'); % Carregando a lib
 
 img = imread('lena_color_256_rgb.tif');
 
-out_hsi = converter_color_system(img, 'RGB-HSI');
+out_rgb_hsi = converter_color_system(img, 'RGB-HSI');
 
-figure, imshow(out_hsi);
+figure, imshow(out_rgb_hsi);
 
-out_yiq = converter_color_system(img, 'RGB-YIQ');
+out_hsi_rgb = converter_color_system(out_rgb_hsi, 'HSI-RGB');
 
-figure, imshow(out_yiq);
+figure, imshow(out_hsi_rgb);
 
-out_rgb = converter_color_system(out_yiq, 'YIQ-RGB');
+out_rgb_yiq = converter_color_system(img, 'RGB-YIQ');
 
-figure, imshow(out_rgb);
+figure, imshow(out_rgb_yiq);
 
-img2 = imread('lena_gray_512.tif');
+out_yiq_rgb = converter_color_system(out_rgb_yiq, 'YIQ-RGB');
 
-img_negativo = negativo(img2, 8);
+figure, imshow(out_yiq_rgb);
 
-imshow(img_negativo);
+img2 = imread("lena_gray_512.tif");
 
-img_limiar = limiar(img2, 8, 128);
+out_edge_prewitt = imfilter_edge(img2, 'prewitt');
+ 
+figure, imshow(out_edge_prewitt);
 
-imshow(img_limiar);
+out_edge_roberts = imfilter_edge(img2, 'roberts');
+ 
+figure, imshow(out_edge_roberts);
 
-img_gamma = gamma(img2, 1, 0.3);
-
-imshow(img_gamma);
-
-img_log = logaritmo(img2, 2);
-
-imshow(img_log);
-
-operacao_histograma(img2, 8, 'expansão');
-
-out_edge = imfilter_edge(img2, 'prewitt');
-
-imshow(out_edge);
+out_edge_sobel = imfilter_edge(img2, 'sobel');
+ 
+figure, imshow(out_edge_sobel);

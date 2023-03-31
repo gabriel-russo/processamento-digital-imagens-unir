@@ -1,0 +1,5 @@
+INSTALE AS DEPENDÊNCIAS
+
+pip install -r requirements.txt
+
+EXECUTE O ARQUIVO main.py
